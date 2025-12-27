@@ -4,6 +4,8 @@ This is a simple Snake game built using HTML, CSS, and JavaScript as a learning 
 
 The game is still a work in progress and is not fully completed yet.
 
+🌐Live Demo: https://snake2food.netlify.app/
+
 ## Features
 - Basic snake movement using keyboard controls (W, A, S, D)
 - Food spawning at random positions
