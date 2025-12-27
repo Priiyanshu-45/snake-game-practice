@@ -11,7 +11,6 @@
   background-color: black;
   display: flex;
   flex-direction: column; 
-  justify-content: space-between; 
   align-items: center;  
   padding: 5vmin 2vmin;
   overflow: hidden;
@@ -21,69 +20,117 @@
   font-size: 10vmin;  
   color: white;
   text-align: center;
+  margin-bottom: auto; 
 }
 
 .game-area {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* This matches the board's sizing exactly */
   width: 85vmin;
-  max-width: 500px;
+  max-width: 450px;
+  margin-bottom: 1vmin; 
 }
 
 .score-container {
   display: flex;
   justify-content: space-between; 
-  width: 100%; /* Fills the game-area width */
+  width: 100%;
   font-family: cursive;
   color: white;
   font-size: 5vmin;
-  margin-bottom: 1vmin;
+  margin-bottom: 2vmin;
 }
 
 .board {
-  background-color: grey;
-  width: 100%; /* Uses 100% of the game-area */
-  height: 85vmin;
-  max-height: 500px;
+  background-color: #2b2b2b;;
+  width: 90vmin;
+  height: 90vmin;
+  max-height: 450px;
   border-radius: 1vmin;          
-  border: 0.5vmin solid white;  
-  box-shadow: 0px 10px 30px rgba(255, 255, 255, 0.2), 
-              0px 5px 10px rgba(255, 255, 255, 0.1);
+  border: 0.1vmin solid white;  
+  box-shadow: 2px 1px 10px rgb(255, 255, 255), -2px -2px 10px rgb(255, 255, 255);
   display: grid;
-  grid-template-rows: repeat(18, 1fr);
-  grid-template-columns: repeat(18, 1fr);
+  grid-template-rows: repeat(20, 1fr);
+  grid-template-columns: repeat(20, 1fr);
 }
 
 .GamePad {
   display: flex;
   justify-content: center;
-  gap: 3vmin;
-  margin-bottom: 2vmin; 
+  gap: 4vmin;
+  margin-bottom: auto; 
+  margin-top: 1vmin;
 }
 
 .gamebuttons {
-  width: 15vmin;   
-  height: 12vmin;
-  max-width: 80px;
-  max-height: 70px;
+  width: 14vmin;   
+  height: 11vmin;
+  max-width: 70px;
+  max-height: 60px;
   font-size: 6vmin;  
   border-radius: 2vmin;  
-  background-color: white;
+  background-color: #000; 
+  color: #00f2ff; 
+  border: 2px solid #00f2ff;
+  box-shadow: 0 0 10px #00f2ff, 0 0 5px #00f2ff;
+  text-shadow: 0 0 8px #00f2ff;
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
   border: none;
-  box-shadow: 0 4px #999;
+  box-shadow: 0 0 10px #00f2ff;
+  padding-bottom: 12px;
 }
 
 .gamebuttons:active {
-  transform: translateY(4px);
-  box-shadow: 0 0px #999;
+  transform: translateY(4px) scale(0.95);
+  background-color: #00f2ff;
+  color: black;
+  box-shadow: 0 0 17px #00f2ff, inset 0 0 17px #00f2ff;
   background-color: #ddd;
 }
 
-.head { background-color: red; }
-.food { background-color: green; }
+.head {
+  background: radial-gradient(circle at 30% 30%, #fff0f0, #ff3b3b 60%, #b30000);
+  border-radius: 35%;
+  box-shadow:
+    0 0 8px #ff3b3b,
+    0 0 16px #ff3b3b,
+    0 0 24px rgba(255, 59, 59, 0.8),
+    inset 0 0 6px #ffffff;
+}
+
+.body {
+  background: linear-gradient(135deg, #5f1cff, #00bcd4);
+  border-radius: 40%;
+  box-shadow:
+    0 0 5px rgba(0, 188, 212, 0.7),
+    0 0 10px rgba(95, 28, 255, 0.6);
+}
+
+@keyframes foodPulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 8px #00ff7f, 0 0 16px #00ff7f;
+  }
+  50% {
+    transform: scale(1.2);
+    box-shadow: 0 0 16px #00ff7f, 0 0 32px #00ff7f;
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 8px #00ff7f, 0 0 16px #00ff7f;
+  }
+}
+
+.food {
+  background: radial-gradient(circle, #eafff2, #00ff7f 60%, #008f4f);
+  border-radius: 50%;
+  animation: foodPulse 1.2s ease-in-out infinite;
+}
+
+.head, .body, .food {
+  border: 0.05vmin solid rgba(255,255,255,0.2);
+}

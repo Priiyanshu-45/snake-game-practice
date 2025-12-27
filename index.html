@@ -13,22 +13,21 @@
 <body>
   <div class="main">
     <h1 class="heading">Snake &#8594; Food</h1>
-
     <div class="game-area">
       <div class="score-container">
-        <span id="scoreBox">Score: 0</span>
-        <span id="hiscoreBox">HiScore: 0</span>
+        <span id="score">Score: 0</span>
+        <span id="hiscore">HiScore: 0</span>
       </div>
-      <div id="board" class="board"></div>
+      <div class="board"></div>
     </div>
 
     <div class="GamePad">
-      <button class="gamebuttons" onclick="changeDir('left')">&#8592;</button>
-      <button class="gamebuttons" onclick="changeDir('up')">&#8593;</button>
-      <button class="gamebuttons" onclick="changeDir('down')">&#8595;</button>
-      <button class="gamebuttons" onclick="changeDir('right')">&#8594;</button>
+      <button class="gamebuttons" id="a">&#8592;</button>
+      <button class="gamebuttons" id="w">&#8593;</button>
+      <button class="gamebuttons" id="s">&#8595;</button>
+      <button class="gamebuttons" id="d">&#8594;</button>
     </div>
   </div>
-  <script src="js/script.js"></script>
+  <script src="JS/script.js"></script>
 </body>
 </html>
