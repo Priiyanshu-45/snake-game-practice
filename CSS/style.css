@@ -7,70 +7,83 @@
 
 .main {
   width: 100vw;
-  min-height: 100vh; 
+  height: 100vh; 
   background-color: black;
   display: flex;
   flex-direction: column; 
-  justify-content: center; 
+  justify-content: space-between; 
   align-items: center;  
-  gap: 2vmin; 
-  padding: 2vmin;
-}
-
-
-.game-header {
-  text-align: center;
-  width: 100%;
+  padding: 5vmin 2vmin;
+  overflow: hidden;
 }
 
 .heading {
   font-size: 10vmin;  
   color: white;
-  margin-bottom: 1vmin;
+  text-align: center;
+}
+
+.game-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* This matches the board's sizing exactly */
+  width: 85vmin;
+  max-width: 500px;
 }
 
 .score-container {
   display: flex;
-  justify-content: space-around; 
-  width: 100%;
+  justify-content: space-between; 
+  width: 100%; /* Fills the game-area width */
   font-family: cursive;
   color: white;
   font-size: 5vmin;
+  margin-bottom: 1vmin;
 }
-
 
 .board {
   background-color: grey;
-  width: 60vmin;
-  height: 60vmin;  
+  width: 100%; /* Uses 100% of the game-area */
+  height: 85vmin;
+  max-height: 500px;
   border-radius: 1vmin;          
   border: 0.5vmin solid white;  
+  box-shadow: 0px 10px 30px rgba(255, 255, 255, 0.2), 
+              0px 5px 10px rgba(255, 255, 255, 0.1);
   display: grid;
   grid-template-rows: repeat(18, 1fr);
   grid-template-columns: repeat(18, 1fr);
 }
 
-
 .GamePad {
   display: flex;
   justify-content: center;
-  gap: 1vmin;
-  margin-top: -1vmin; 
+  gap: 3vmin;
+  margin-bottom: 2vmin; 
 }
 
 .gamebuttons {
-  width: 10vmin;   
-  height: 8vmin;  
-  font-size: 5vmin;  
-  border-radius: 1vmin;  
+  width: 15vmin;   
+  height: 12vmin;
+  max-width: 80px;
+  max-height: 70px;
+  font-size: 6vmin;  
+  border-radius: 2vmin;  
   background-color: white;
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
   border: none;
+  box-shadow: 0 4px #999;
 }
 
 .gamebuttons:active {
-  transform: translateY(-5px);
+  transform: translateY(4px);
+  box-shadow: 0 0px #999;
+  background-color: #ddd;
 }
+
+.head { background-color: red; }
+.food { background-color: green; }

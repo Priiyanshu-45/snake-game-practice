@@ -4,7 +4,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
-
   <link rel="icon" href="assets/favicon-16x16.png" type="image/x-icon">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,23 +12,23 @@
 </head>
 <body>
   <div class="main">
-    <header class="game-header">
-      <h1 class="heading">Snake &#8594; Food</h1>
-      <div class="score-container">
-        <span class="Score">Score : 0</span>
-        <span class="HiScore">HiScore : 0</span>
-      </div>
-    </header>
+    <h1 class="heading">Snake &#8594; Food</h1>
 
-    <div class="board"></div>
+    <div class="game-area">
+      <div class="score-container">
+        <span id="scoreBox">Score: 0</span>
+        <span id="hiscoreBox">HiScore: 0</span>
+      </div>
+      <div id="board" class="board"></div>
+    </div>
 
     <div class="GamePad">
-      <button class="gamebuttons">&#8592;</button>
-      <button class="gamebuttons">&#8593;</button>
-      <button class="gamebuttons">&#8595;</button>
-      <button class="gamebuttons">&#8594;</button>
+      <button class="gamebuttons" onclick="changeDir('left')">&#8592;</button>
+      <button class="gamebuttons" onclick="changeDir('up')">&#8593;</button>
+      <button class="gamebuttons" onclick="changeDir('down')">&#8595;</button>
+      <button class="gamebuttons" onclick="changeDir('right')">&#8594;</button>
     </div>
   </div>
+  <script src="js/script.js"></script>
 </body>
-<script src="js/script.js"></script>
 </html>
