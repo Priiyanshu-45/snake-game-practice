@@ -76,44 +76,6 @@
   opacity: 1;
 }
 
-
-/* .GamePad {
-  display: flex;
-  justify-content: center;
-  gap: 4vmin;
-  margin-bottom: auto; 
-  margin-top: 1vmin;
-} */
-
-/* .gamebuttons {
-  width: 14vmin;   
-  height: 11vmin;
-  max-width: 70px;
-  max-height: 60px;
-  font-size: 6vmin;  
-  border-radius: 2vmin;  
-  background-color: #000; 
-  color: #00f2ff; 
-  border: 2px solid #00f2ff;
-  box-shadow: 0 0 10px #00f2ff, 0 0 5px #00f2ff;
-  text-shadow: 0 0 8px #00f2ff;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: none;
-  box-shadow: 0 0 10px #00f2ff;
-  padding-bottom: 12px;
-} */
-
-/* .gamebuttons:active {
-  transform: translateY(4px) scale(0.95);
-  background-color: #00f2ff;
-  color: black;
-  box-shadow: 0 0 17px #00f2ff, inset 0 0 17px #00f2ff;
-  background-color: #ddd;
-} */
-
 .head {
   background: radial-gradient(circle at 30% 30%, #fff0f0, #ff3b3b 60%, #b30000);
   border-radius: 35%;

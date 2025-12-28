@@ -6,10 +6,16 @@ let snakePosition = [
 ]
 let foodPosition = { x: 5, y: 12 };
 const hint = document.getElementById("hint");
-let song = new Audio("assets/snake.mp3");
+let song = new Audio("assets/song.mp3");
+song.currentTime = 1;
 let eatSound = new Audio("assets/eating.mp3");
-eatSound.playbackRate += 1
-song.volume = 0.2;
+let btnSnd = new Audio("assets/btnSound.mp3");
+let gameOver = new Audio("assets/gameover.mp3");
+btnSnd.volume = 0.1;
+btnSnd.playbackRate += 2;
+eatSound.playbackRate += 1;
+song.volume = 0.1;
+gameOver.volume = 1;
 
 
 let speed = 6;
@@ -71,7 +77,7 @@ function move() {
   if (direction.x === 0 && direction.y === 0) return;
   snakePosition.unshift({ x: (snakePosition[0].x + direction.x), y: (snakePosition[0].y + direction.y) })
   if ((snakePosition[0].x == foodPosition.x) && (snakePosition[0].y == foodPosition.y)) {
-    eatSound.play();
+    eatSound.play();  
     spawnfood();
    }
   else {
@@ -97,6 +103,8 @@ function isCollide() {
 }
 
 function restart() {
+  song.pause();
+  gameOver.play();
   console.log("Game Over!");
   direction = { x: 0, y: 0 };
   Score = 0;
@@ -106,7 +114,6 @@ function restart() {
   isSpawned = 0;
   song.playbackRate = 1;
   song.currentTime = 1;
-  song.pause();
 }
 
 
@@ -116,52 +123,26 @@ window.addEventListener("keydown", (e) => {
     song.loop = true; 
   }
   if ((e.key == "ArrowUp" || e.key == "w" || e.key == "W") && direction.y != 1) {
+    btnSnd.play();
     direction.y = -1;
     direction.x = 0;
   }
   else if ((e.key == "ArrowDown" || e.key == "s" || e.key == "S") && direction.y != -1) {
+    btnSnd.play();
     direction.y = 1;
     direction.x = 0;
   }
   else if ((e.key == "ArrowLeft" || e.key == "a" || e.key == "A") && direction.x != 1) {
+    btnSnd.play();
     direction.y = 0;
     direction.x = -1;
   }
   else if ((e.key == "ArrowRight" || e.key == "d" || e.key == "D") && direction.x != -1) {
+    btnSnd.play();
     direction.y = 0;
     direction.x = +1;
   }
 })
-
-// function gamePad() {
-//   let Gamepad = document.querySelector(".GamePad");
-//   Gamepad.addEventListener("pointerdown", (e) => {
-//     if (song.paused) {
-//     song.play();
-//     song.loop = true;
-//     }
-//     if (e.target.tagName == "BUTTON") {
-//     if (e.target.id == "w" && direction.y != 1) {
-//     direction.y = -1;
-//     direction.x = 0;
-//     }
-//     else if (e.target.id == "s" && direction.y != -1) {
-//       direction.y = 1;
-//       direction.x = 0;
-//     }
-//     else if (e.target.id == "a" && direction.x != 1) {
-//       direction.y = 0;
-//       direction.x = -1;
-//     }
-//     else if (e.target.id == "d" && direction.x != -1) {
-//       direction.y = 0;
-//       direction.x = +1;
-//     }
-// }
-//   })
-// }
-// gamePad();
-
 
 function render() {
   let score = document.querySelector("#score");
@@ -221,18 +202,22 @@ function touchMove() {
 function moveRight() {
   direction.x = 1;
   direction.y = 0;
+  btnSnd.play();
 }
 function moveLeft() {
   direction.x = -1;
   direction.y = 0;
+  btnSnd.play();
 }
 function moveDown() {
   direction.x = 0;
   direction.y = 1;
+  btnSnd.play();
 }
 function moveUp() {
   direction.x = 0;
   direction.y = -1;
+  btnSnd.play();
 }
 
 touchMove();
