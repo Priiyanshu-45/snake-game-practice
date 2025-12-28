@@ -4,8 +4,12 @@ let direction = { x: 0, y: 0 };
 let snakePosition = [
   { x: 12, y: 14 }
 ]
-let foodPosition = { x : 5, y : 12 };
-let song = new Audio("assets/song.mp3");
+let foodPosition = { x: 5, y: 12 };
+const hint = document.getElementById("hint");
+let song = new Audio("assets/snake.mp3");
+let eatSound = new Audio("assets/eating.mp3");
+eatSound.playbackRate += 1
+song.volume = 0.2;
 
 
 let speed = 6;
@@ -67,6 +71,7 @@ function move() {
   if (direction.x === 0 && direction.y === 0) return;
   snakePosition.unshift({ x: (snakePosition[0].x + direction.x), y: (snakePosition[0].y + direction.y) })
   if ((snakePosition[0].x == foodPosition.x) && (snakePosition[0].y == foodPosition.y)) {
+    eatSound.play();
     spawnfood();
    }
   else {
@@ -99,6 +104,8 @@ function restart() {
   snakePosition = [{ x: 4, y: 8 }];
   foodPosition = { x: 1, y: 1 };
   isSpawned = 0;
+  song.playbackRate = 1;
+  song.currentTime = 1;
   song.pause();
 }
 
@@ -126,34 +133,35 @@ window.addEventListener("keydown", (e) => {
   }
 })
 
-function gamePad() {
-  let Gamepad = document.querySelector(".GamePad");
-  Gamepad.addEventListener("pointerdown", (e) => {
-    if (song.paused) {
-    song.play();
-    song.loop = true; 
-    }
-    if (e.target.tagName == "BUTTON") {
-    if (e.target.id == "w" && direction.y != 1) {
-    direction.y = -1;
-    direction.x = 0;
-    }
-    else if (e.target.id == "s" && direction.y != -1) {
-      direction.y = 1;
-      direction.x = 0;
-    }
-    else if (e.target.id == "a" && direction.x != 1) {
-      direction.y = 0;
-      direction.x = -1;
-    }
-    else if (e.target.id == "d" && direction.x != -1) {
-      direction.y = 0;
-      direction.x = +1;
-    }     
-}
-  })
-}
-gamePad();
+// function gamePad() {
+//   let Gamepad = document.querySelector(".GamePad");
+//   Gamepad.addEventListener("pointerdown", (e) => {
+//     if (song.paused) {
+//     song.play();
+//     song.loop = true;
+//     }
+//     if (e.target.tagName == "BUTTON") {
+//     if (e.target.id == "w" && direction.y != 1) {
+//     direction.y = -1;
+//     direction.x = 0;
+//     }
+//     else if (e.target.id == "s" && direction.y != -1) {
+//       direction.y = 1;
+//       direction.x = 0;
+//     }
+//     else if (e.target.id == "a" && direction.x != 1) {
+//       direction.y = 0;
+//       direction.x = -1;
+//     }
+//     else if (e.target.id == "d" && direction.x != -1) {
+//       direction.y = 0;
+//       direction.x = +1;
+//     }
+// }
+//   })
+// }
+// gamePad();
+
 
 function render() {
   let score = document.querySelector("#score");
@@ -181,11 +189,65 @@ function render() {
   }
 }
 
+function touchMove() {
+  let StartX;
+  let StartY;
+  let Gboard = document.querySelector(".board");
+  Gboard.addEventListener("pointerdown", (e) => {
+    hint.classList.remove("show");
+    StartX = e.clientX;
+    StartY = e.clientY;
+  })
+  
+  Gboard.addEventListener("pointerup", (e) => {
+    let endX = e.clientX;
+    let endY = e.clientY;
+
+    let dx = endX - StartX;
+    let dy = endY - StartY;
+    let maxSwipe = 30;
+    if (Math.abs(dx) > Math.abs(dy)) {
+      if (dx > maxSwipe && direction.x != -1) moveRight();
+      else if (dx < -maxSwipe && direction.x != 1) moveLeft();
+    }
+    else {
+      if (dy > maxSwipe && direction.y != -1) moveDown();
+      else if (dy < -maxSwipe && direction.y != 1) moveUp();
+    }
+  })
+
+}
+
+function moveRight() {
+  direction.x = 1;
+  direction.y = 0;
+}
+function moveLeft() {
+  direction.x = -1;
+  direction.y = 0;
+}
+function moveDown() {
+  direction.x = 0;
+  direction.y = 1;
+}
+function moveUp() {
+  direction.x = 0;
+  direction.y = -1;
+}
+
+touchMove();
+
+function showHint() {
+  hint.classList.add("show");
+  setTimeout(() => hint.classList.remove("show"), 3000);
+}
+
 function saveScore() {
   localStorage.setItem("hiScore", HiScore);
 }
 
 window.addEventListener("load", () => {
+  showHint();
   let hiscore = document.querySelector("#hiscore");
   hiscore.textContent = `HiScore: ${localStorage.getItem("hiScore")}`;
 });
