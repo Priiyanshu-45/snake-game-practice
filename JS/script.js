@@ -232,9 +232,10 @@ function saveScore() {
 }
 
 window.addEventListener("load", () => {
+   let storedScore = parseInt(localStorage.getItem("hiScore")) || 0;
+  HiScore = storedScore;
+  document.querySelector("#hiscore").textContent = `HiScore: ${HiScore}`;
   showHint();
-  let hiscore = document.querySelector("#hiscore");
-  hiscore.textContent = `HiScore: ${localStorage.getItem("hiScore")}`;
 });
 
 
