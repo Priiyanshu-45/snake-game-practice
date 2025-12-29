@@ -151,8 +151,8 @@ function render() {
   if (Score > HiScore) {
     hiscore.textContent = `HiScore: ${Score}`;
     HiScore = Score;
+    saveScore();
   }
-  saveScore();
   let board = document.querySelector(".board")
   board.innerHTML = "";
   let food = document.createElement("div");
